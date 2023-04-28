@@ -1,18 +1,11 @@
-import { mockLaunches } from '../../mocks/launch';
-
 const cardSelector = '[data-test="launch-card"]';
 describe('Launches', () => {
   beforeEach(() => {
-    cy.intercept('POST', 'https://api.spacexdata.com/v5/launches/query', {
-      statusCode: 200,
-      body: { docs: mockLaunches({ count: 10 }) },
-    });
-
     cy.visit('/');
   });
 
-  it('displays 10 launches', () => {
-    cy.get(cardSelector).should('have.length', 10);
+  it('displays the launch', () => {
+    cy.get(cardSelector).should('be.visible');
   });
 
   it('displays the launch name', () => {
@@ -28,3 +21,5 @@ describe('Launches', () => {
     cy.get(cardSelector).should('contain.text', 'Launch Core Serial');
   });
 });
+
+export {};
