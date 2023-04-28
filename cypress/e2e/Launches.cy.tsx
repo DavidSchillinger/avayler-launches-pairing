@@ -13,4 +13,9 @@ describe('Launches', () => {
   it('displays 10 launches', () => {
     cy.get('[data-test="launch-card"]').should('have.length', 10);
   });
+
+  it('displays the launch name', () => {
+    cy.get('[data-test="launch-card"]').first().should('have.text', 'Launch 0');
+    cy.get('[data-test="launch-card"]').last().should('have.text', 'Launch 9');
+  });
 });
