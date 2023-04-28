@@ -23,4 +23,8 @@ describe('Launches', () => {
   it('displays the launch date', () => {
     cy.get(cardSelector).should('contain.text', '2000-10-20T20:30:00.000Z');
   });
+
+  it('displays the first launch core serial', () => {
+    cy.get(cardSelector).should('contain.text', 'Launch Core Serial');
+  });
 });

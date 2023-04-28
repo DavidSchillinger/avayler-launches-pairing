@@ -23,7 +23,7 @@ function launch() {
     ],
     cores: [
       {
-        core: '5e9e289df35918033d3b2623',
+        core: 'Launch Core Serial',
       },
     ],
   };
