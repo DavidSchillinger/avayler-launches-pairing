@@ -1,7 +1,7 @@
 export function mockLaunches({ count }: { count: number }) {
-  return Array.from(Array(count)).map(() => launch());
+  return Array.from(Array(count)).map(mockLaunch);
 }
-function launch() {
+export function mockLaunch() {
   const id = uniqueId();
 
   return {

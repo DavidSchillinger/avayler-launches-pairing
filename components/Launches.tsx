@@ -1,6 +1,6 @@
-import { mockLaunches } from '../mocks/launch';
+import { mockLaunch } from '../mocks/launch';
 
-const launches = mockLaunches({ count: 10 });
+const launches = [mockLaunch()];
 
 export function Launches() {
   return (

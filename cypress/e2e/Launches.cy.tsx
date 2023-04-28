@@ -9,8 +9,7 @@ describe('Launches', () => {
   });
 
   it('displays the launch name', () => {
-    cy.get(cardSelector).find('h4').first().should('have.text', 'Launch 0');
-    cy.get(cardSelector).find('h4').last().should('have.text', 'Launch 9');
+    cy.get(cardSelector).find('h4').should('have.text', 'Launch 0');
   });
 
   it('displays the launch date', () => {
