@@ -1,5 +1,5 @@
 export function mockLaunches({ count }: { count: number }) {
-  return Array.from(Array(count)).map(launch);
+  return Array.from(Array(count)).map(() => launch());
 }
 function launch() {
   const id = uniqueId();
@@ -7,7 +7,7 @@ function launch() {
   return {
     id,
     name: 'Launch ' + id,
-    date_utc: '2006-03-24T22:30:00.000Z',
+    date_utc: '2000-10-20T20:30:00.000Z',
     links: {
       patch: {
         small: 'path/to/image.png',

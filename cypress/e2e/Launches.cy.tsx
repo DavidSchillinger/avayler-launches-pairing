@@ -1,5 +1,6 @@
 import { mockLaunches } from '../../mocks/launch';
 
+const cardSelector = '[data-test="launch-card"]';
 describe('Launches', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://api.spacexdata.com/v5/launches/query', {
@@ -11,11 +12,15 @@ describe('Launches', () => {
   });
 
   it('displays 10 launches', () => {
-    cy.get('[data-test="launch-card"]').should('have.length', 10);
+    cy.get(cardSelector).should('have.length', 10);
   });
 
   it('displays the launch name', () => {
-    cy.get('[data-test="launch-card"]').first().should('have.text', 'Launch 0');
-    cy.get('[data-test="launch-card"]').last().should('have.text', 'Launch 9');
+    cy.get(cardSelector).find('h4').first().should('have.text', 'Launch 0');
+    cy.get(cardSelector).find('h4').last().should('have.text', 'Launch 9');
+  });
+
+  it('displays the launch date', () => {
+    cy.get(cardSelector).should('contain.text', '2000-10-20T20:30:00.000Z');
   });
 });

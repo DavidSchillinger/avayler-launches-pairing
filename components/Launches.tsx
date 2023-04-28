@@ -8,6 +8,7 @@ export function Launches() {
       {launches.map((launch) => (
         <div key={launch.id} data-test="launch-card">
           <h4>{launch.name}</h4>
+          <p>{launch.date_utc}</p>
         </div>
       ))}
     </article>
