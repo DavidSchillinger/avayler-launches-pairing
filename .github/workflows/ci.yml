@@ -18,19 +18,36 @@ jobs:
         with:
           node-version: 16
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run linter
-        run: yarn run lint
+        run: pnpm run lint
 
       - name: Run unit tests
-        run: yarn run test
+        run: pnpm run test
 
       - name: Build application
-        run: yarn run build
+        run: pnpm run build
 
       - name: Run e2e tests
         uses: cypress-io/github-action@v5
         with:
-          start: yarn run dev
+          start: pnpm run dev
