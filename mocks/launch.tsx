@@ -3,7 +3,7 @@ import { Launch } from '../types/Launch';
 export function mockLaunches({ count }: { count: number }) {
   return Array.from(Array(count)).map(mockLaunch);
 }
-export function mockLaunch(): Launch {
+export function mockLaunch(override?: Partial<Launch>): Launch {
   const id = uniqueId();
 
   return {
@@ -28,6 +28,7 @@ export function mockLaunch(): Launch {
         core: 'Launch Core Serial',
       },
     ],
+    ...override,
   };
 }
 

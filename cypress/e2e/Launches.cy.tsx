@@ -42,9 +42,16 @@ describe('Launches', () => {
     cy.get(cardSelector).find('a').should('have.text', 'path/to/image.png');
   });
 
-  // TODO: Add "Failed" case as soon as we can control mock data from this E2E test.
-  it('displays whether or not the launch succeeded', () => {
+  it('displays when a launch succeeded', () => {
+    interceptFetchLaunches([mockLaunch({ success: true })]);
     cy.get(cardSelector).should('contain.text', 'Succeeded');
+    cy.get(cardSelector).should('not.contain.text', 'Failed');
+  });
+
+  it('displays when a launch failed', () => {
+    interceptFetchLaunches([mockLaunch({ success: false })]);
+    cy.get(cardSelector).should('contain.text', 'Failed');
+    cy.get(cardSelector).should('not.contain.text', 'Succeeded');
   });
 
   it('displays as many launches as are returned from the API', () => {
