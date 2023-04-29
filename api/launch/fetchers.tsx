@@ -1,4 +1,4 @@
-import { Launch } from '../types/Launch';
+import { Launch } from './types';
 
 export function fetchLaunches(): Promise<Launch[]> {
   const headers = new Headers({ 'Content-Type': 'application/json' });

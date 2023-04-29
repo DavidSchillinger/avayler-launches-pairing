@@ -1,4 +1,4 @@
-import { Launch } from '../types/Launch';
+import { Launch } from '../api/launch';
 
 export function mockLaunches({ count }: { count: number }) {
   return Array.from(Array(count)).map(mockLaunch);

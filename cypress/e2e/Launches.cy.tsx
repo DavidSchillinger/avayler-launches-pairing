@@ -1,5 +1,5 @@
 import { mockLaunch, mockLaunches } from '../../mocks/launch';
-import { Launch } from '../../types/Launch';
+import { Launch } from '../../api/launch';
 
 const cardSelector = '[data-test="launch-card"]';
 const payloadsSelector = '[data-test="payloads"]';

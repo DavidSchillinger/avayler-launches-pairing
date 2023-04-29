@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Launch } from '../types/Launch';
-import { fetchLaunches } from './fetchLaunches';
+import { fetchLaunches, Launch } from '../api/launch';
 import classes from './Launches.module.css';
 
 export function Launches() {
