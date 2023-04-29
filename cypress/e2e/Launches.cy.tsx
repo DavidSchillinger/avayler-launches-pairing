@@ -1,15 +1,19 @@
-import { mockLaunch } from '../../mocks/launch';
+import { mockLaunch, mockLaunches } from '../../mocks/launch';
+import { Launch } from '../../types/Launch';
 
 const cardSelector = '[data-test="launch-card"]';
 const payloadsSelector = '[data-test="payloads"]';
 
+const interceptFetchLaunches = (docs: Launch[]) => {
+  cy.intercept('POST', 'https://api.spacexdata.com/v5/launches/query', {
+    statusCode: 200,
+    body: { docs },
+  }).as('fetchLaunches');
+};
+
 describe('Launches', () => {
   beforeEach(() => {
-    cy.intercept('POST', 'https://api.spacexdata.com/v5/launches/query', {
-      statusCode: 200,
-      body: { docs: [mockLaunch()] },
-    }).as('fetchLaunches');
-
+    interceptFetchLaunches([mockLaunch()]);
     cy.visit('/');
   });
 
@@ -41,6 +45,11 @@ describe('Launches', () => {
   // TODO: Add "Failed" case as soon as we can control mock data from this E2E test.
   it('displays whether or not the launch succeeded', () => {
     cy.get(cardSelector).should('contain.text', 'Succeeded');
+  });
+
+  it('displays as many launches as are returned from the API', () => {
+    interceptFetchLaunches(mockLaunches({ count: 10 }));
+    cy.get(cardSelector).should('have.length', 10);
   });
 });
 
