@@ -29,6 +29,10 @@ export function Launches() {
           <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
 
           <p>{launch.success ? 'Succeeded' : 'Failed'}</p>
+
+          {!launch.success &&
+            !!launch.failures.length &&
+            launch.failures.map((failure, index) => <p key={index}>{failure.reason}</p>)}
         </div>
       ))}
     </article>

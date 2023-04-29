@@ -49,8 +49,10 @@ describe('Launches', () => {
   });
 
   it('displays when a launch failed', () => {
-    interceptFetchLaunches([mockLaunch({ success: false })]);
+    interceptFetchLaunches([mockLaunch({ success: false, failures: [{ reason: 'foo' }, { reason: 'bar' }] })]);
     cy.get(cardSelector).should('contain.text', 'Failed');
+    cy.get(cardSelector).should('contain.text', 'foo');
+    cy.get(cardSelector).should('contain.text', 'bar');
     cy.get(cardSelector).should('not.contain.text', 'Succeeded');
   });
 
