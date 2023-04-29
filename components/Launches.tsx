@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Launch } from '../types/Launch';
 import { fetchLaunches } from './fetchLaunches';
+import classes from './Launches.module.css';
 
 export function Launches() {
   const [launches, setLaunches] = useState<Launch[]>([]);
@@ -11,28 +12,30 @@ export function Launches() {
   }, []);
 
   return (
-    <article>
+    <article className={classes.container}>
       {launches.map((launch) => (
-        <div key={launch.id} data-test="launch-card">
-          <h4>{launch.name}</h4>
-          <p>{launch.date_utc}</p>
-          <p>{launch.cores[0].core}</p>
+        <div key={launch.id}>
+          <div data-test="launch-card" className={classes.card}>
+            <h4>{launch.name}</h4>
+            <p>{launch.date_utc}</p>
+            <p>{launch.cores[0].core}</p>
 
-          <div data-test="payloads">
-            {launch.payloads.map((payload) => (
-              <p key={payload.id}>
-                {payload.id} {payload.type}
-              </p>
-            ))}
+            <div data-test="payloads">
+              {launch.payloads.map((payload) => (
+                <p key={payload.id}>
+                  {payload.id} {payload.type}
+                </p>
+              ))}
+            </div>
+
+            <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
+
+            <p>{launch.success ? 'Succeeded' : 'Failed'}</p>
+
+            {!launch.success &&
+              !!launch.failures.length &&
+              launch.failures.map((failure, index) => <p key={index}>{failure.reason}</p>)}
           </div>
-
-          <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
-
-          <p>{launch.success ? 'Succeeded' : 'Failed'}</p>
-
-          {!launch.success &&
-            !!launch.failures.length &&
-            launch.failures.map((failure, index) => <p key={index}>{failure.reason}</p>)}
         </div>
       ))}
     </article>
