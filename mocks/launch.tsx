@@ -17,8 +17,8 @@ export function mockLaunch() {
     failures: [],
     payloads: [
       {
-        type: 'Satellite',
-        id: '5eb0e4b5b6c3bb0006eeb1e1',
+        type: 'Launch Payload Type',
+        id: 'Launch Payload ID',
       },
     ],
     cores: [

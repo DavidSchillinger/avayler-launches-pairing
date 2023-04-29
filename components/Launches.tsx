@@ -10,6 +10,14 @@ export function Launches() {
           <h4>{launch.name}</h4>
           <p>{launch.date_utc}</p>
           <p>{launch.cores[0].core}</p>
+
+          <div data-test="payloads">
+            {launch.payloads.map((payload) => (
+              <p key={payload.id}>
+                {payload.id} {payload.type}
+              </p>
+            ))}
+          </div>
         </div>
       ))}
     </article>

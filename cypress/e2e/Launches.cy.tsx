@@ -1,4 +1,6 @@
 const cardSelector = '[data-test="launch-card"]';
+const payloadsSelector = '[data-test="payloads"]';
+
 describe('Launches', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -18,6 +20,11 @@ describe('Launches', () => {
 
   it('displays the first launch core serial', () => {
     cy.get(cardSelector).should('contain.text', 'Launch Core Serial');
+  });
+
+  it('displays launch payloads', () => {
+    cy.get(cardSelector).find(payloadsSelector).should('contain.text', 'Launch Payload Type');
+    cy.get(cardSelector).find(payloadsSelector).should('contain.text', 'Launch Payload ID');
   });
 });
 
