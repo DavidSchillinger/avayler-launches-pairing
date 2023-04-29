@@ -27,3 +27,5 @@
 - "top 10 items" refers to the first 10 items the API returns on its default sort
 - Fetching all cores for each launch is acceptable
   - It's unclear to me how/if I can select only `cores[0]`
+- Replacing `yarn` by `pnpm` has been agreed by the team
+  - In reality upgrading to yarn 2 or using npm are also sensible options, as long as I can have a lock file for dependency caching (faster CI and reproducible builds)
