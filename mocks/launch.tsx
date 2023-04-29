@@ -1,12 +1,14 @@
+import { Launch } from '../types/Launch';
+
 export function mockLaunches({ count }: { count: number }) {
   return Array.from(Array(count)).map(mockLaunch);
 }
-export function mockLaunch() {
+export function mockLaunch(): Launch {
   const id = uniqueId();
 
   return {
     id,
-    name: 'Launch ' + id,
+    name: 'Launch Name',
     date_utc: '2000-10-20T20:30:00.000Z',
     links: {
       patch: {

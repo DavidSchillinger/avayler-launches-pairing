@@ -1,8 +1,15 @@
+import { mockLaunch } from '../../mocks/launch';
+
 const cardSelector = '[data-test="launch-card"]';
 const payloadsSelector = '[data-test="payloads"]';
 
 describe('Launches', () => {
   beforeEach(() => {
+    cy.intercept('POST', 'https://api.spacexdata.com/v5/launches/query', {
+      statusCode: 200,
+      body: { docs: [mockLaunch()] },
+    }).as('fetchLaunches');
+
     cy.visit('/');
   });
 
@@ -11,7 +18,7 @@ describe('Launches', () => {
   });
 
   it('displays the launch name', () => {
-    cy.get(cardSelector).find('h4').should('have.text', 'Launch 0');
+    cy.get(cardSelector).find('h4').should('have.text', 'Launch Name');
   });
 
   it('displays the launch date', () => {
