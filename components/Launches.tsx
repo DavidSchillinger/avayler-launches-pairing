@@ -20,6 +20,8 @@ export function Launches() {
           </div>
 
           <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
+
+          <p>{launch.success ? 'Succeeded' : 'Failed'}</p>
         </div>
       ))}
     </article>

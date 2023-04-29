@@ -30,6 +30,11 @@ describe('Launches', () => {
   it('displays the launch image link', () => {
     cy.get(cardSelector).find('a').should('have.text', 'path/to/image.png');
   });
+
+  // TODO: Add "Failed" case as soon as we can control mock data from this E2E test.
+  it('displays whether or not the launch succeeded', () => {
+    cy.get(cardSelector).should('contain.text', 'Succeeded');
+  });
 });
 
 export {};
