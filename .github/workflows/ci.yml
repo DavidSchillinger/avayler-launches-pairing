@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run linter
+        run: yarn run lint
+
+      - name: Run unit tests
+        run: yarn run test
+
+      - name: Build application
+        run: yarn run build
+
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          start: yarn run dev
