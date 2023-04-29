@@ -1,7 +1,7 @@
 import { Launch } from './types';
 
 export function fetchLaunches(): Promise<Launch[]> {
-  const headers = new Headers({ 'Content-Type': 'application/json' });
+  const headers = { 'Content-Type': 'application/json' };
 
   const body = JSON.stringify({
     query: {},
