@@ -18,6 +18,8 @@ export function Launches() {
               </p>
             ))}
           </div>
+
+          <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
         </div>
       ))}
     </article>

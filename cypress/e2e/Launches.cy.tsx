@@ -26,6 +26,10 @@ describe('Launches', () => {
     cy.get(cardSelector).find(payloadsSelector).should('contain.text', 'Launch Payload Type');
     cy.get(cardSelector).find(payloadsSelector).should('contain.text', 'Launch Payload ID');
   });
+
+  it('displays the launch image link', () => {
+    cy.get(cardSelector).find('a').should('have.text', 'path/to/image.png');
+  });
 });
 
 export {};
