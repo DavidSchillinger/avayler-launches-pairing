@@ -29,3 +29,4 @@
   - It's unclear to me how/if I can select only `cores[0]`
 - Replacing `yarn` by `pnpm` has been agreed by the team
   - In reality upgrading to yarn 2 or using npm are also sensible options, as long as I can have a lock file for dependency caching (faster CI and reproducible builds)
+- We always want the most up-to-date data and don't require SEO indexing, so we're fetching client-side
