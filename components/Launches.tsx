@@ -17,24 +17,46 @@ export function Launches() {
             <div key={launch.id}>
               <div data-test="launch-card" className={classes.card}>
                 <h4>{launch.name}</h4>
+
+                <h5>Launched:</h5>
                 <p>{launch.date_utc}</p>
-                <p>{launch.cores[0].core}</p>
 
-                <div data-test="payloads">
-                  {launch.payloads.map((payload) => (
-                    <p key={payload.id}>
-                      {payload.id} {payload.type}
-                    </p>
-                  ))}
-                </div>
+                {launch.cores[0]?.core && (
+                  <section>
+                    <h5>Core:</h5>
+                    <p>{launch.cores[0].core}</p>
+                  </section>
+                )}
 
-                <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
+                {launch.payloads.length > 0 && (
+                  <section data-test="payloads">
+                    <h5>Payloads:</h5>
+                    {launch.payloads.map((payload) => (
+                      <p key={payload.id}>
+                        {payload.id} {payload.type ? `(${payload.type})` : ''}
+                      </p>
+                    ))}
+                  </section>
+                )}
 
+                {launch.links.patch.small && (
+                  <section>
+                    <h5>Image:</h5>
+                    <a href={launch.links.patch.small}>{launch.links.patch.small}</a>
+                  </section>
+                )}
+
+                <h5>Result:</h5>
                 <p>{launch.success ? 'Succeeded' : 'Failed'}</p>
 
-                {!launch.success &&
-                  !!launch.failures.length &&
-                  launch.failures.map((failure, index) => <p key={index}>{failure.reason}</p>)}
+                {!launch.success && !!launch.failures.length && (
+                  <section>
+                    <h5>Failure due to:</h5>
+                    {launch.failures.map((failure, index) => (
+                      <p key={index}>{failure.reason}</p>
+                    ))}
+                  </section>
+                )}
               </div>
             </div>
           ))}

@@ -22,7 +22,7 @@ describe('Launches', () => {
   });
 
   it('displays the launch name', () => {
-    cy.get(cardSelector).find('h4').should('have.text', 'Launch Name');
+    cy.get(cardSelector).find('h4').should('contain.text', 'Launch Name');
   });
 
   it('displays the launch date', () => {

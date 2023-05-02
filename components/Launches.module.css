@@ -5,6 +5,10 @@
   padding: 2rem;
 }
 
+.container h5, .container p {
+  margin: 0.5rem 0;
+}
+
 .card {
   background: #161b22;
   border: 0.125rem solid #ddd;
