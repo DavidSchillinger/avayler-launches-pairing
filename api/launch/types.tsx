@@ -1,15 +1,17 @@
+// See https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v5/schema.md
+
 type Core = {
-  core: string;
+  core: string | null;
 };
 
 type Payload = {
   id: string;
-  type: string;
+  type: string | null;
 };
 
 type Links = {
   patch: {
-    small: string;
+    small: string | null;
   };
 };
 
@@ -24,6 +26,6 @@ export type Launch = {
   cores: Core[];
   payloads: Payload[];
   links: Links;
-  success: boolean;
+  success: boolean | null;
   failures: Failure[];
 };
